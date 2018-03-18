@@ -48,7 +48,7 @@ public class Register {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			con = DriverManager.getConnection(DatabaseProperties.url,
 					DatabaseProperties.user,DatabaseProperties.pwd);
-			String sql="INSERT INTO user_login (id, pwd, fname, lname, email) VALUES (?,?,?,?,?)";
+			String sql="INSERT INTO user_detail (id, pwd, fname, lname, email) VALUES (?,?,?,?,?)";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, id);
 			ps.setString(2, pwd);
