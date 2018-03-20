@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="register.Register" %>
+    <%@ page import="controller.dao.Register" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -19,13 +19,26 @@
  	}
  
  </script>
+ <style type="text/css">
+	 h3.error {
+	 	color:red;
+	 	border-style: solid;
+   		border-color: red;
+	 }
+	 h3.success{
+	 	color:green;
+	 	border-style: solid;
+   		border-color: green;
+	 }
+ </style>
 </head>
 <body>
-	<%if(request.getAttribute("errorMessages")!=null){%>
-	<h2><%=request.getAttribute("errorMessages") %></h2>
+	<%if(request.getAttribute("errorMessage")!=null){%>
+		<h3 class="error"><%=request.getAttribute("errorMessage") %></h3>
 	<%		
-	}
-	%>
+	}else if(request.getAttribute("successMessage")!=null){%>
+		<h3 class="success"><%=request.getAttribute("successMessage") %></h3>
+	<%}%>
 	<form action="register" method="post">
 		<table>
 			<tr>

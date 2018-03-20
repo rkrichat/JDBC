@@ -21,13 +21,12 @@
 	    <version>3.1.0</version>
 	    <scope>provided</scope>
 	</dependency>
-	
 	<dependency>
-		<groupId>jdbc6</groupId>
-		<artifactId>jdbc6</artifactId>
-		<version>1.0</version>
-		<scope>system</scope>
-		<systemPath>${project.basedir}/src/main/resources/lib/ojdbc6.jar</systemPath>
+	    <groupId>ojdbc6</groupId>
+	    <artifactId>ojdbc6</artifactId>
+	    <version>1.0</version>
+	    <scope>system</scope>
+	    <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/ojdbc6.jar</systemPath>
 	</dependency>
   </dependencies>
   <build>

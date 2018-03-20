@@ -1,12 +1,13 @@
-package register;
+package controller.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import configuration.DatabaseProperties;
+
 import javax.servlet.http.HttpServletRequest;
+
+import configuration.ConnectionDB;
 
 public class Register {
 	private String id;
@@ -45,9 +46,7 @@ public class Register {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			con = DriverManager.getConnection(DatabaseProperties.url,
-					DatabaseProperties.user,DatabaseProperties.pwd);
+			con = ConnectionDB.getConnection();
 			String sql="INSERT INTO user_detail (id, pwd, fname, lname, email) VALUES (?,?,?,?,?)";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, id);
@@ -62,16 +61,14 @@ public class Register {
 			}
 		}catch(Exception exception) {
 			System.out.println(exception);
-			con.rollback();
+			if(con!=null) con.rollback();
 		}finally{
-			if(con!=null) con.close();
-			if(ps!=null) ps.close();
-			if(rs!=null) rs.close();
+			ConnectionDB.closeConnection(con, ps, rs);
 		}
 		return false;
 	}
 	
-	public boolean validateAllFields() {
+	public boolean validateAllFields() throws SQLException {
 		if(id==null) {
 			errorMasage = "Id is requeired";
 			return false;
@@ -88,11 +85,29 @@ public class Register {
 			errorMasage = "Name is requeired";
 			return false;
 		}else if(lastName==null) {
-			errorMasage = "lastName is requeired";
+			errorMasage = "Last Name is requeired";
 			return false;
 		}else if(email==null) {
 			errorMasage = "Email is requeired";
 			return false;
+		}else {
+			Connection con = null;
+			PreparedStatement ps =null;
+			ResultSet rs = null;
+			try {
+				con = ConnectionDB.getConnection();
+				ps = con.prepareStatement("SELECT id FROM user_detail WHERE id = ?");
+				ps.setString(1, id);
+				rs = ps.executeQuery();
+				if(rs.next()) {
+					errorMasage = "ID already exist";
+					return false;
+				}
+			}catch(Exception exception) {
+				System.out.println(exception);
+			}finally{
+				ConnectionDB.closeConnection(con, ps, rs);
+			}
 		}
 		return true;
 	}
