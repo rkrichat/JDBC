@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="controller.dao.Register" %>
+    <%@ page import="controller.dao.RegisterDao" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -8,9 +8,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Register</title>
  <%
-	 Register register = new Register();
+ 	 RegisterDao register = new RegisterDao();
 	 if(request.getAttribute("register")!=null){
-		 register = (Register)request.getAttribute("register");
+		 register = (RegisterDao)request.getAttribute("register");
 	 }
  %>
  <script>

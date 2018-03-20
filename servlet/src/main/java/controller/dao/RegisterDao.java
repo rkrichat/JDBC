@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import configuration.ConnectionDB;
 
-public class Register {
+public class RegisterDao {
 	private String id;
 	private String pwd;
 	private String rePwd;
@@ -18,8 +18,8 @@ public class Register {
 	private String email;
 	private String errorMasage;
 	
-	public Register() {}
-	public Register(HttpServletRequest request) {
+	public RegisterDao() {}
+	public RegisterDao(HttpServletRequest request) {
 		if(null!=request.getParameter("id") && request.getParameter("id").length()>0) {
 			id = request.getParameter("id");
 		}

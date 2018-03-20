@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controller.dao.Register;
+import controller.dao.RegisterDao;
 
 public class RegisterController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
@@ -18,7 +18,7 @@ public class RegisterController extends HttpServlet{
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Register register = new Register(request);
+		RegisterDao register = new RegisterDao(request);
 		try {
 			register.createUser();
 			if(register.getErrorMasage()!=null) {
