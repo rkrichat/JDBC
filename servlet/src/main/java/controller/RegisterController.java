@@ -18,18 +18,23 @@ public class RegisterController extends HttpServlet{
 	}
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RegisterDao register = new RegisterDao(request);
-		try {
-			register.createUser();
-			if(register.getErrorMasage()!=null) {
-				request.setAttribute("errorMessage", register.getErrorMasage());
-				request.setAttribute("register", register);
-			}else {
-				request.setAttribute("successMessage", "Register Successfully");
-			}
+		if(request.getParameter("register")!=null) {
+			request.setAttribute("register", request.getParameter("register"));
 			request.getRequestDispatcher("/register.jsp").forward(request, response);
-		} catch (SQLException exception) {
-			System.out.println(exception);
+		}else {
+			RegisterDao register = new RegisterDao(request);
+			try {
+				register.createUser();
+				if(register.getErrorMasage()!=null) {
+					request.setAttribute("errorMessage", register.getErrorMasage());
+					request.setAttribute("register", register);
+				}else {
+					request.setAttribute("successMessage", "Register Successfully");
+				}
+				request.getRequestDispatcher("/register.jsp").forward(request, response);
+			} catch (SQLException exception) {
+				System.out.println(exception);
+			}
 		}
 	}
 }

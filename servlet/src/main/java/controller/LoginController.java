@@ -17,6 +17,7 @@ public class LoginController extends HttpServlet{
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse responde) {
 		LoginDao loginDao = new LoginDao(request);
+
 		try {
 			boolean isLoginPass = loginDao.login();
 			request.setAttribute("loginDao", loginDao);

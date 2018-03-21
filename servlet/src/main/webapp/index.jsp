@@ -26,7 +26,7 @@
 	<input type="submit"> <input type="button" value="register" onclick="submitRegisterForm();">
 </form>
 
-<form name="register" action="register.jsp" method="get"></form>
+<form name="register" action="register.jsp" method="post"></form>
 
 </body>
 </html>
