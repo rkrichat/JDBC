@@ -54,7 +54,7 @@
 		</table>
 		<input type="hidden" name="id" value="<%=userMaintenanceDao.getId() %>">
 		<input type="hidden" name="pwd" value="<%=userMaintenanceDao.getPwd() %>">
-	</form>
+	</form> 
 	
 	<form name="userdetail" action="login" method="post">
 		<input type="hidden" name="id" value="<%=userMaintenanceDao.getId() %>">
